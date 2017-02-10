@@ -13,12 +13,13 @@ var hrs = -( offset / 60); console.log(hrs);
     var PhilippineTime = React.createClass({
       getDefaultProps: function () {
             var phtime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            return { time: phtime};
+            var filipinotime = today.getHours() - 1 + ":" + today.getMinutes() + ":" + today.getSeconds();
+            return { time: phtime, other: filipinotime};
       },
       render: function() {
         var props = this.props;
         return (
-          <div> Time in Philippines:  { props.time } </div>
+          <div> Philippine: { props.time } <br /> Filipino: {  props.other }</div>
 
         )
       }
@@ -35,23 +36,23 @@ var hrs = -( offset / 60); console.log(hrs);
        render: function() {
           var props = this.props;
             return (
-              <div> Time in India:  { props.time } </div>
+              <div> Indian:  { props.time } </div>
             )
           }
     });
 
-    var EasternStandardTime = React.createClass({
+    var USTime = React.createClass({
               getDefaultProps: function () {
 
-                var es_hours = ((today.getHours() - 13) > 12) ? (today.getHours() - 13) : Math.abs(12 - (today.getHours() - 13));
+                var es_hours = ((today.getHours() - 13) > 0) ? (today.getHours() - 13) : Math.abs(12 - (today.getHours() - 13));
                 var estime = es_hours + ":" + today.getMinutes()  + ":" + today.getSeconds();
-
-                return { time: estime};
+                var pstime = Math.abs( es_hours - 3) + ":" + today.getMinutes()  + ":" + today.getSeconds();
+                return { newYork: estime, california: pstime};
               },
 
       render: function() {
             return (
-              <div> Time in Eastern: { this.props.time } </div>
+              <div>  Pacific: { this.props.newYork }  / Eastern: { this.props.california } </div>
           )
       }
     });
@@ -69,7 +70,7 @@ var hrs = -( offset / 60); console.log(hrs);
                         <h4>You must be fans of the time :)</h4>
                               <PhilippineTime />
                               <IndianStandardTime />
-                              <EasternStandardTime />
+                              <USTime />
                         </div>
                             );
                       }
