@@ -10,50 +10,50 @@ var offset = new Date().getTimezoneOffset();
 var hrs = -( offset / 60); console.log(hrs);
 
   if(hrs == 8) {
-  	var phtime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var PhilippineTime = React.createClass({
+      getDefaultProps: function () {
+            var phtime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            return { time: phtime};
+      },
+      render: function() {
+        var props = this.props;
+        return (
+          <div> Time in Philippines:  { props.time } </div>
 
-  	var indian_minutes = ((today.getMinutes() -30) > 30) ? (today.getMinutes() - 30) : Math.abs(today.getMinutes() - 30);
-  	var indian_hour = ((today.getHours() - 2) < 0) ? (today.getHours() + 10) : (today.getHours() - 2);
-  	var intime = indian_hour + ":" + indian_minutes + ":" + today.getSeconds();
-
-  	var es_hours = ((today.getHours() - 13) > 0) ? (today.getHours() - 13) : Math.abs((today.getHours() - 13));
-  	var estime = es_hours + ":" + today.getMinutes()  + ":" + today.getSeconds();
-
-
-
-
-
-
-
-   var PhilippineTime = React.createClass({
-           render: function() {
-                    return (
-                      <div>
-                          Time in Philippines:  { phtime }
-                       </div>
-
-              )
-          }
+        )
+      }
     });
 
     var IndianStandardTime = React.createClass({
-           render: function() {
-                    return (
-                      <div>
-                          Time in India:  { intime }
-                      </div>
-                      )
-              }
+      getDefaultProps: function () {
+        var indian_minutes = ((today.getMinutes() -30) > 30) ? (today.getMinutes() - 30) : Math.abs(today.getMinutes() - 30);
+        var indian_hour = ((today.getHours() - 2) < 0) ? (today.getHours() + 10) : (today.getHours() - 2);
+        var istime = indian_hour + ":" + indian_minutes + ":" + today.getSeconds();
+        return {time: istime};
+      },
+
+       render: function() {
+          var props = this.props;
+            return (
+              <div> Time in India:  { props.time } </div>
+            )
+          }
     });
 
     var EasternStandardTime = React.createClass({
-           render: function() {
-                    return (
-                      <div>
-                          Time in Eastern: { estime }
-                       </div>
-                      )
-                  }
+              getDefaultProps: function () {
+
+                var es_hours = ((today.getHours() - 13) > 0) ? (today.getHours() - 13) : Math.abs((today.getHours() - 13));
+                var estime = es_hours + ":" + today.getMinutes()  + ":" + today.getSeconds();
+
+                return { time: estime};
+              },
+
+      render: function() {
+            return (
+              <div> Time in Eastern: { this.props.time } </div>
+          )
+      }
     });
 
 
@@ -61,6 +61,8 @@ var hrs = -( offset / 60); console.log(hrs);
 
   // ES5 way
       var Main = React.createClass({
+
+
             render: function() {
                     return (
                       <div>
