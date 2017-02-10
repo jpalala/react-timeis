@@ -26,7 +26,7 @@ var hrs = -( offset / 60); console.log(hrs);
 
     var IndianStandardTime = React.createClass({
       getDefaultProps: function () {
-        var indian_minutes = ((today.getMinutes() -30) > 30) ? (today.getMinutes() - 30) : Math.abs(today.getMinutes() - 30 + 60);
+        var indian_minutes = ((today.getMinutes() -30) < 60) ? Math.abs(today.getMinutes() - 30) : Math.abs(60 - (today.getMinutes() - 30));
         var indian_hour = ((today.getHours() - 2) < 0) ? (today.getHours() + 10) : (today.getHours() - 2);
         var istime = indian_hour + ":" + indian_minutes + ":" + today.getSeconds();
         return {time: istime};
@@ -43,7 +43,7 @@ var hrs = -( offset / 60); console.log(hrs);
     var EasternStandardTime = React.createClass({
               getDefaultProps: function () {
 
-                var es_hours = ((today.getHours() - 13) > 0) ? (today.getHours() - 13) : Math.abs((today.getHours() - 13) + 12 );
+                var es_hours = ((today.getHours() - 13) > 12) ? (today.getHours() - 13) : Math.abs(12 - (today.getHours() - 13));
                 var estime = es_hours + ":" + today.getMinutes()  + ":" + today.getSeconds();
 
                 return { time: estime};
