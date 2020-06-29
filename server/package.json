@@ -1,0 +1,14 @@
+{
+  "name": "timeis-server",
+  "version": "0.1.0",
+  "description": "Queries the worldtimeapi",
+  "main": "app.js",
+  "repository": "https://github.com/n/a",
+  "author": "joe",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "curl-request": "^1.1.1",
+    "express": "^4.17.1"
+  }
+}
